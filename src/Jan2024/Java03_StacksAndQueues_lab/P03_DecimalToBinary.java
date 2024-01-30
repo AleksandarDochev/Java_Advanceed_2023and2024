@@ -1,4 +1,4 @@
-package Jan2024;
+package Jan2024.Java03_StacksAndQueues_lab;
 
 import java.util.Scanner;
 
