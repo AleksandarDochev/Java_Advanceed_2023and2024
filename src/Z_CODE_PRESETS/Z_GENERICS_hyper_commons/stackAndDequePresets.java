@@ -1,8 +1,9 @@
 package Z_CODE_PRESETS.Z_GENERICS_hyper_commons;
 
 import java.util.ArrayDeque;
+import java.util.Collections;
 
-public class stackPresets {
+public class stackAndDequePresets {
     public static void main(String[] args) {
 
         //--------populating a stack , depopulation removing values from a stack
@@ -29,6 +30,8 @@ public class stackPresets {
         int topOfStack = stack2.peek();
         System.out.println(topOfStack);
         System.out.println("--------top of stack check, difference between stack push and add");
+        System.out.println(Collections.max(stack2)); //get the highest value in the stack or deck
+        //print out the maximum value integer number out of a stack or deque
 
 
 
