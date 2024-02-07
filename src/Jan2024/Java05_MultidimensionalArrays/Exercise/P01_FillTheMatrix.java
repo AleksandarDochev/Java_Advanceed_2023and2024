@@ -58,7 +58,7 @@ public class P01_FillTheMatrix {
         printMultiDimArrayV1(array);
 
     }
-    private static void printMultiDimArrayV1(int[][] array){
+    public static void printMultiDimArrayV1(int[][] array){
         for (int row = 0; row < array.length; row++) {
             StringBuilder sb = new StringBuilder();
             for (int col = 0; col < array[row].length; col++) {
