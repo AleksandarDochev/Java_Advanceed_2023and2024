@@ -15,7 +15,8 @@ public class P03_DiagonalDifference {
         //11 2 4
         //4 5 6
         //10 8 -12
-
+        int primaryDiagonal = 0;
+        int secondaryDiagonal = 0;
         for (int row = 0; row < matrix.length; row++) {
             int [] numbersCurrentRow = Arrays.stream(scanner.nextLine()          //"1 4 3 2"
                             .split(" "))                     //["1","4","3","2"]
@@ -25,6 +26,18 @@ public class P03_DiagonalDifference {
                 matrix[row][col]=numbersCurrentRow[col];
             }
         }
+        for (int row = 0; row < matrixDimensions; row++) {
+            for (int col = 0; col < matrixDimensions; col++) {
+                if (row==col){
+                    primaryDiagonal = primaryDiagonal + matrix[row][col];
+                }
+                if (col==matrixDimensions-1-row){
+                    secondaryDiagonal = secondaryDiagonal + matrix[row][col];
+                }
+            }
+        }
+
+        System.out.println(Math.abs(primaryDiagonal-secondaryDiagonal));
 
     }
     private static void buildIntegerMatrix(int rowsInput, int colsInput){
