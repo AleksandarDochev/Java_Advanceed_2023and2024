@@ -1,9 +1,8 @@
 package Jan2024.Java05_MultidimensionalArrays.Exercise;
-
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class P04_MaximalSum {
+public class Testing {
     public static void main(String[] args) {
         // --- create an integer matrix and fill it with integers ---
         Scanner scanner = new Scanner(System.in);
