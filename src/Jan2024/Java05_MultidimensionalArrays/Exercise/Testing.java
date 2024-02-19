@@ -1,71 +1,84 @@
 package Jan2024.Java05_MultidimensionalArrays.Exercise;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class Testing {
     public static void main(String[] args) {
-        // --- create a string matrix and fill it with strings ---
         Scanner scanner = new Scanner(System.in);
-        int[] matrixDimensions = Arrays.stream(scanner.nextLine().split(" "))
-                .mapToInt(Integer::parseInt)
-                .toArray();
-        String[][] matrix = new String[matrixDimensions[0]][matrixDimensions[1]];
 
-        for (int row = 0; row < matrixDimensions[0]; row++) {
-            matrix[row] = scanner.nextLine().split(" ");
+        String command = scanner.nextLine();
+        int degrees = Integer.parseInt(command.substring(7, command.length() - 1)) % 360;
+
+        List<String> lines = new ArrayList<>();
+        String line;
+        while (!(line = scanner.nextLine()).equals("END")) {
+            lines.add(line);
         }
-        // --- create a string matrix and fill it with strings ---
 
-        // Process commands until "END" is entered
-        while (true) {
-            String command = scanner.nextLine();
-            if (command.equals("END")) {
-                break;
-            }
+        char[][] matrix = new char[lines.size()][];
+        int maxLength = 0;
+        for (int i = 0; i < lines.size(); i++) {
+            matrix[i] = lines.get(i).toCharArray();
+            maxLength = Math.max(maxLength, matrix[i].length);
+        }
 
-            String[] tokens = command.split(" ");
-            if (tokens.length != 5 || !tokens[0].equals("swap")) {
-                System.out.println("Invalid input!");
-                continue;
-            }
-
-            try {
-                int row1 = Integer.parseInt(tokens[1]);
-                int col1 = Integer.parseInt(tokens[2]);
-                int row2 = Integer.parseInt(tokens[3]);
-                int col2 = Integer.parseInt(tokens[4]);
-
-                if (!isValidCell(matrixDimensions[0], matrixDimensions[1], row1, col1) ||
-                        !isValidCell(matrixDimensions[0], matrixDimensions[1], row2, col2)) {
-                    System.out.println("Invalid input!");
-                    continue;
-                }
-
-                String temp = matrix[row1][col1];
-                matrix[row1][col1] = matrix[row2][col2];
-                matrix[row2][col2] = temp;
-
-                printMatrix(matrix);
-            } catch (NumberFormatException e) {
-                System.out.println("Invalid input!");
-            }
+        if (degrees == 90) {
+            rotate90Degrees(matrix, maxLength);
+        } else if (degrees == 180) {
+            rotate180Degrees(matrix, maxLength);
+        } else if (degrees == 270) {
+            rotate270Degrees(matrix, maxLength);
+        } else {
+            printMatrix(matrix);
         }
 
         scanner.close();
     }
 
-    // Check if the cell coordinates are within the bounds of the matrix
-    private static boolean isValidCell(int numRows, int numCols, int row, int col) {
-        return row >= 0 && row < numRows && col >= 0 && col < numCols;
-    }
-
-    // Print the matrix
-    private static void printMatrix(String[][] matrix) {
-        for (String[] row : matrix) {
-            for (String cell : row) {
-                System.out.print(cell + " ");
+    private static void rotate90Degrees(char[][] matrix, int maxLength) {
+        for (int col = 0; col < maxLength; col++) {
+            for (int row = matrix.length - 1; row >= 0; row--) {
+                if (col < matrix[row].length) {
+                    System.out.print(matrix[row][col]);
+                } else {
+                    System.out.print(" ");
+                }
             }
             System.out.println();
+        }
+    }
+
+    private static void rotate180Degrees(char[][] matrix, int maxLength) {
+        for (int row = matrix.length - 1; row >= 0; row--) {
+            for (int col = maxLength - 1; col >= 0; col--) {
+                if (col < matrix[row].length) {
+                    System.out.print(matrix[row][col]);
+                } else {
+                    System.out.print(" ");
+                }
+            }
+            System.out.println();
+        }
+    }
+
+    private static void rotate270Degrees(char[][] matrix, int maxLength) {
+        for (int col = maxLength - 1; col >= 0; col--) {
+            for (char[] row : matrix) {
+                if (col < row.length) {
+                    System.out.print(row[col]);
+                } else {
+                    System.out.print(" ");
+                }
+            }
+            System.out.println();
+        }
+    }
+
+    private static void printMatrix(char[][] matrix) {
+        for (char[] row : matrix) {
+            System.out.println(row);
         }
     }
 }
