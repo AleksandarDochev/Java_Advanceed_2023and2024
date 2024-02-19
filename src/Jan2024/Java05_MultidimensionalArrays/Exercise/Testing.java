@@ -4,52 +4,68 @@ import java.util.Scanner;
 
 public class Testing {
     public static void main(String[] args) {
-        // --- create an integer matrix and fill it with integers ---
+        // --- create a string matrix and fill it with strings ---
         Scanner scanner = new Scanner(System.in);
         int[] matrixDimensions = Arrays.stream(scanner.nextLine().split(" "))
                 .mapToInt(Integer::parseInt)
                 .toArray();
-        int[][] matrix = new int[matrixDimensions[0]][matrixDimensions[1]];
+        String[][] matrix = new String[matrixDimensions[0]][matrixDimensions[1]];
 
         for (int row = 0; row < matrixDimensions[0]; row++) {
-            int[] numbersCurrentRow = Arrays.stream(scanner.nextLine().split(" "))
-                    .mapToInt(Integer::parseInt)
-                    .toArray();
-            for (int col = 0; col < matrixDimensions[1]; col++) {
-                matrix[row][col] = numbersCurrentRow[col];
-            }
+            matrix[row] = scanner.nextLine().split(" ");
         }
-        // --- create an integer matrix and fill it with integers ---
+        // --- create a string matrix and fill it with strings ---
 
-        // Find the square 3x3 with maximal sum
-        int maxSum = Integer.MIN_VALUE;
-        int startRow = -1, startCol = -1;
-
-        for (int i = 0; i <= matrixDimensions[0] - 3; i++) {
-            for (int j = 0; j <= matrixDimensions[1] - 3; j++) {
-                int sum = 0;
-                for (int k = i; k < i + 3; k++) {
-                    for (int l = j; l < j + 3; l++) {
-                        sum += matrix[k][l];
-                    }
-                }
-                if (sum > maxSum) {
-                    maxSum = sum;
-                    startRow = i;
-                    startCol = j;
-                }
+        // Process commands until "END" is entered
+        while (true) {
+            String command = scanner.nextLine();
+            if (command.equals("END")) {
+                break;
             }
-        }
 
-        // Print the square 3x3 with maximal sum
-        System.out.println("Sum = " + maxSum);
-        for (int i = startRow; i < startRow + 3; i++) {
-            for (int j = startCol; j < startCol + 3; j++) {
-                System.out.print(matrix[i][j] + " ");
+            String[] tokens = command.split(" ");
+            if (tokens.length != 5 || !tokens[0].equals("swap")) {
+                System.out.println("Invalid input!");
+                continue;
             }
-            System.out.println();
+
+            try {
+                int row1 = Integer.parseInt(tokens[1]);
+                int col1 = Integer.parseInt(tokens[2]);
+                int row2 = Integer.parseInt(tokens[3]);
+                int col2 = Integer.parseInt(tokens[4]);
+
+                if (!isValidCell(matrixDimensions[0], matrixDimensions[1], row1, col1) ||
+                        !isValidCell(matrixDimensions[0], matrixDimensions[1], row2, col2)) {
+                    System.out.println("Invalid input!");
+                    continue;
+                }
+
+                String temp = matrix[row1][col1];
+                matrix[row1][col1] = matrix[row2][col2];
+                matrix[row2][col2] = temp;
+
+                printMatrix(matrix);
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input!");
+            }
         }
 
         scanner.close();
+    }
+
+    // Check if the cell coordinates are within the bounds of the matrix
+    private static boolean isValidCell(int numRows, int numCols, int row, int col) {
+        return row >= 0 && row < numRows && col >= 0 && col < numCols;
+    }
+
+    // Print the matrix
+    private static void printMatrix(String[][] matrix) {
+        for (String[] row : matrix) {
+            for (String cell : row) {
+                System.out.print(cell + " ");
+            }
+            System.out.println();
+        }
     }
 }
