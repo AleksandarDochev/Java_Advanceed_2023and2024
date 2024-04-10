@@ -63,9 +63,11 @@ public class T02_EscapeTheMaze {
                     if (health <= 0) {
                         health = 0;
                         break; // Player is defeated
+                    }else {
+                        // Remove monster from the maze
+                        maze[newRow][newCol] = '-';
+                        maze[playerRow][playerCol] = 'P'; // Set new position for player
                     }
-                    // Remove monster from the maze
-                    maze[newRow][newCol] = '-';
                 } else if (nextCell == 'H') {
                     // Encounter with health potion, increase health by 15
                     health += 15;
@@ -79,6 +81,7 @@ public class T02_EscapeTheMaze {
                     maze[playerRow][playerCol] = '-'; // Clear current position
                     playerRow = newRow;
                     playerCol = newCol;
+                    maze[playerRow][playerCol] = 'P'; // Set new position for player
                     break;
                 }
 
