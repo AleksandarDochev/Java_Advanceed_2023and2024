@@ -139,7 +139,7 @@ public class T02_TheGambler {
             StringBuilder sb = new StringBuilder();
             for (int col = 0; col < array[row].length; col++) {
                 sb.append(array[row][col])
-                        .append(" ");
+                        .append("");
             }
             System.out.println(sb.toString().trim());
         }
