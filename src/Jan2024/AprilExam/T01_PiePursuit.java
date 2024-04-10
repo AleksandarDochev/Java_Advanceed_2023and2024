@@ -62,7 +62,7 @@ public class T01_PiePursuit {
         if (contestantQueue.isEmpty() && pieStack1.isEmpty()) {
             System.out.println("We have a champion!");
         } else if (contestantQueue.isEmpty()) {
-            System.out.println("Our contestantsCount need to rest!");
+            System.out.println("Our contestants need to rest!");
             System.out.print("Pies left: ");
             while (!pieStack1.isEmpty()) {
                 System.out.print(pieStack1.pop());
@@ -72,7 +72,7 @@ public class T01_PiePursuit {
             }
             System.out.println();
         } else { // Pies are over, contestantsCount left
-            System.out.println("We will have to wait for more piesAll to be baked!");
+            System.out.println("We will have to wait for more pies to be baked!");
             System.out.print("Contestants left: ");
             while (!contestantQueue.isEmpty()) {
                 System.out.print(contestantQueue.poll());
