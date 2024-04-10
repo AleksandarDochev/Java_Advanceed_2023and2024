@@ -29,23 +29,28 @@ public class T02_EscapeTheMaze {
         int health = 100; // Initial health
 
         // Process commands until exit or death
-        while (true) {
-            if (!scanner.hasNextLine()) {
-                break; // No more commands
-            }
+        while (scanner.hasNextLine()) {
             String command = scanner.nextLine();
 
             int newRow = playerRow;
             int newCol = playerCol;
 
-            if (command.equals("up")) {
-                newRow = playerRow - 1;
-            } else if (command.equals("down")) {
-                newRow = playerRow + 1;
-            } else if (command.equals("right")) {
-                newCol = playerCol + 1;
-            } else if (command.equals("left")) {
-                newCol = playerCol - 1;
+            // Calculate new position based on the command
+            switch (command) {
+                case "up":
+                    newRow = playerRow - 1;
+                    break;
+                case "down":
+                    newRow = playerRow + 1;
+                    break;
+                case "right":
+                    newCol = playerCol + 1;
+                    break;
+                case "left":
+                    newCol = playerCol - 1;
+                    break;
+                default:
+                    continue; // Skip invalid commands
             }
 
             // Check if the new position is within the maze boundaries
@@ -85,7 +90,7 @@ public class T02_EscapeTheMaze {
             }
         }
 
-        // Output the result
+        // Output the result based on the final player state
         if (health <= 0) {
             System.out.println("Player is dead. Maze over!");
         } else {
