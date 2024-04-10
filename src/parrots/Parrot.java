@@ -28,7 +28,7 @@ public class Parrot {
     //"Parrot ({species}): {name}"
 
     //Alt + Insert ->
-    //only do getter for name and species
+    //do getter for name and species
 
     public String getName() {
         return name;
@@ -37,9 +37,12 @@ public class Parrot {
     public String getSpecies() {
         return species;
     }
+
+    public boolean isAvailable() {
+        return available;
+    }
+
     //only do setter for isAvailable , because  "is"
-
-
     public void setAvailable(boolean available) {
         this.available = available;
     }
@@ -49,10 +52,6 @@ public class Parrot {
     //"Parrot ({species}): {name}"
     @Override
     public String toString() {
-        return "Parrot{" +
-                "name='" + name + '\'' +
-                ", species='" + species + '\'' +
-                ", available=" + available +
-                '}';
+        return String.format("Parrot (%s): %s",this.species, this.name);
     }
 }

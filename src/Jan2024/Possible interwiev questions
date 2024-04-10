@@ -1,0 +1,20 @@
+Modules:
+-Sets and Maps advanced
+-hast tables
+-Exercise:Workshop
+-Exercise:Generics
+-Exercise:Functional Programing
+
+Q:how are hash tables stored
+A:the hash code of the object of the key is taken
+and is put into a hash function and the bucket location calculated.
+Q:Collision in hash maps?
+Q:Difference between arrayList and LinkedList
+Q:What is faster and in which situation:
+A:To get an element in arrayList is faster
+A:To add elements to the end and the beginning of a linked list is recommended.
+Q: What is similar and different between arrayList and LinkedList
+Q:Whats is hashMap and hashFunction
+Q:Questions about Generics
+Q:The stream API, filtering sorting etc. (Exercise:Functional Programming)
+
