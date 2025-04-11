@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-public class SolutionJavaStdInAndStdout {
+public class Solution_OOP_JavaStdInAndStdout {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
